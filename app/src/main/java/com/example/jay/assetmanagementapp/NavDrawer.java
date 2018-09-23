@@ -56,16 +56,6 @@ public class NavDrawer extends AppCompatActivity
 
         }
 
-        /*CardView cardView=(CardView)findViewById(R.id.cardview_cardview_layout);
-        cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(NavDrawer.this,AssetOwned.class);
-                startActivity(intent);
-            }
-        });*/
-
-
 
 
     }
@@ -125,4 +115,8 @@ public class NavDrawer extends AppCompatActivity
     }
 
 
+    public void cardViewClicked(View view){
+        Intent intent=new Intent(this,AssetOwned.class);
+        startActivity(intent);
+    }
 }
