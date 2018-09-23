@@ -19,8 +19,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PurchaseAsset" />
-        <activity android:name=".RequestAsset"></activity>
+        <activity
+            android:name=".PurchaseAsset"
+            android:label="PurchaseAsset" />
+        <activity
+            android:name=".RequestAsset"
+            android:label="RequestAsset"></activity>
+        <activity android:name=".AssetOwned"></activity>
     </application>
 
 </manifest>

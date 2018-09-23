@@ -56,6 +56,17 @@ public class NavDrawer extends AppCompatActivity
 
         }
 
+        /*CardView cardView=(CardView)findViewById(R.id.cardview_cardview_layout);
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(NavDrawer.this,AssetOwned.class);
+                startActivity(intent);
+            }
+        });*/
+
+
+
 
     }
 
@@ -104,11 +115,14 @@ public class NavDrawer extends AppCompatActivity
         } else if (id == R.id.request_asset_maintainance) {
 
         } else if (id == R.id.request_asset) {
-
+            Intent requestAsset=new Intent(this,RequestAsset.class);
+            startActivity(requestAsset);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }
