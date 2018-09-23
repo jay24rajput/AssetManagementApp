@@ -24,8 +24,13 @@
             android:label="PurchaseAsset" />
         <activity
             android:name=".RequestAsset"
-            android:label="RequestAsset"></activity>
-        <activity android:name=".AssetOwned"></activity>
+            android:label="RequestAsset" />
+        <activity android:name=".AssetOwned" />
+
+        <activity android:name=".AssetMaintenance"></activity>
+
+
+        <activity android:name=".AssetApproval"></activity>
     </application>
 
 </manifest>

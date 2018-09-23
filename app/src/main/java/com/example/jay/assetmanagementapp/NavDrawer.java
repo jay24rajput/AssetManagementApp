@@ -102,10 +102,13 @@ public class NavDrawer extends AppCompatActivity
             Intent purchaseAsset=new Intent(this,PurchaseAsset.class);
             startActivity(purchaseAsset);
             // Handle the camera action
-        } else if (id == R.id.request_asset_maintainance) {
+        }
+        else if (id == R.id.request_asset_maintainance) {
+            Intent maintainAsset = new Intent(this, AssetMaintenance.class);
+            startActivity(maintainAsset);
 
         } else if (id == R.id.request_asset) {
-            Intent requestAsset=new Intent(this,RequestAsset.class);
+            Intent requestAsset = new Intent(this, RequestAsset.class);
             startActivity(requestAsset);
         }
 
