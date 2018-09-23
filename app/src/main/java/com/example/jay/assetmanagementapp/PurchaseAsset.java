@@ -26,13 +26,15 @@ public class PurchaseAsset extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
 //set the spinners adapter to the previously created one.
         dropdown.setAdapter(adapter);
-        
+
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
     }
 
 
-
-    public void submitPurchaseAsset(View View)
-    {
+    public void submitPurchaseAsset(View View) {
         //Submit to database
         //Intent intent=new Intent(this,NavDrawer.class);
         //startActivity(intent);
@@ -40,16 +42,15 @@ public class PurchaseAsset extends AppCompatActivity {
 
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // User clicked on a menu option in the app bar overflow menu
         switch (item.getItemId()) {
             case android.R.id.home:
-                // Navigate back to parent activity (CatalogActivity)
-                NavUtils.navigateUpFromSameTask(this);
+                //Write your logic here
+                this.finish();
                 return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 }
