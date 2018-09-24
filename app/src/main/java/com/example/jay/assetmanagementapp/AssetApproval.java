@@ -12,4 +12,14 @@ public class AssetApproval extends AppCompatActivity {
         setContentView(R.layout.activity_asset_approval);
         super.onCreate(savedInstanceState);
     }
+
+
+
+
+
+    private void parseJson(){
+
+
+
+    }
 }

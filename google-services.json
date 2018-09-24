@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "983467537145",
+    "firebase_url": "https://assetmanagement2-1537703643759.firebaseio.com",
+    "project_id": "assetmanagement2-1537703643759",
+    "storage_bucket": "assetmanagement2-1537703643759.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:983467537145:android:9966d9afcd9459cc",
+        "android_client_info": {
+          "package_name": "com.example.android.assetmanagementapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "983467537145-0tj4babfdg27klhveev7evc3kpt6nca8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzejzcaMt0LIbcMn9G_RIDCIPq7gl9qPo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
