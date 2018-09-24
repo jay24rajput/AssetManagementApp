@@ -2,10 +2,15 @@ package com.example.jay.assetmanagementapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -16,7 +21,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class NavDrawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -53,11 +63,21 @@ public class NavDrawer extends AppCompatActivity
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             final View rowView = inflater.inflate(R.layout.cardview_layout, null);
             cardViewLinearLayout.addView(rowView, cardViewLinearLayout.getChildCount() - 1);
-
         }
 
 
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            String name = prefs.getString("Name", "");
+            String email=prefs.getString("Email","");
+            String imgUrl=prefs.getString("Photo URL","");
 
+            Log.e("Jay",name+" "+email+" "+imgUrl);
+
+        NavigationView navigationView1 = (NavigationView) findViewById(R.id.nav_view);
+        View hView =  navigationView1.getHeaderView(0);
+        TextView nvName = (TextView)hView.findViewById(R.id.nav_drawer_name);
+        Log.e("Jay","I am here");
+        nvName.setText(name);
     }
 
     @Override

@@ -9,7 +9,8 @@
     card_view:cardElevation="4dp"
     card_view:cardCornerRadius="3dp"
     android:id="@+id/cardview_cardview_layout"
-    android:onClick="cardViewClicked">
+    android:onClick="cardViewClicked"
+    card_view:cardBackgroundColor="#00FFFF">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,7 +33,8 @@
             android:fontFamily="minerva"
             android:text="Status"
             android:textAlignment="center"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:id="@+id/cardview_status"/>
 
     </LinearLayout>
 

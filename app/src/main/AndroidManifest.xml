@@ -14,19 +14,21 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.NoActionBar">
         <activity
             android:name=".NavDrawer"
             android:label="@string/title_activity_nav_drawer"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
         <activity
             android:name=".PurchaseAsset"
-            android:label="PurchaseAsset" />
+            android:label="PurchaseAsset"
+            android:theme="@style/AppTheme"/>
         <activity
             android:name=".RequestAsset"
-            android:label="RequestAsset" />
+            android:label="RequestAsset"
+            android:theme="@style/AppTheme"/>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,9 +40,12 @@
 
 
 
-        <activity android:name=".AssetOwned" />
-        <activity android:name=".AssetMaintenance" />
-        <activity android:name=".AssetApproval" />
+        <activity android:name=".AssetOwned"
+            android:theme="@style/AppTheme"/>
+        <activity android:name=".AssetMaintenance"
+            android:theme="@style/AppTheme"/>
+        <activity android:name=".AssetApproval"
+            android:theme="@style/AppTheme"/>
 
     </application>
 

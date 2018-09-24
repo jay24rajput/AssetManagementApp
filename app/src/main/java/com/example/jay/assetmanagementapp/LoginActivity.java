@@ -1,5 +1,7 @@
 package com.example.jay.assetmanagementapp;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -25,6 +27,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 
+
+
 public class LoginActivity extends AppCompatActivity{
 
     int RC_SIGN_IN=200;
@@ -34,6 +38,7 @@ public class LoginActivity extends AppCompatActivity{
     public static String name;
     public static String email;
     public static Uri photo_url;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -84,6 +89,7 @@ public class LoginActivity extends AppCompatActivity{
     String TAG="Error";
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
+            sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             Toast.makeText(LoginActivity.this,"LOGIN SUCCESSFUL",Toast.LENGTH_LONG).show();
 
@@ -96,8 +102,17 @@ public class LoginActivity extends AppCompatActivity{
             }
 
             //Display current details
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("Name",name );
+            editor.putString("Email",email);
+            editor.putString("Photo URL", String.valueOf(photo_url));
+            editor.commit();
+
+
 
             Log.e("details",name+"\n"+email+"\n"+photo_url);
+            Intent intent=new Intent(this,NavDrawer.class);
+            startActivity(intent);
 
 
             // Signed in successfully, show authenticated UI.

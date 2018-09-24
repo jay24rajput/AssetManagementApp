@@ -3,48 +3,65 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Asset Name"
-        android:id="@+id/asset_approved_tv"/>
+        android:id="@+id/asset_approved_tv"
+        android:textSize="20dp"
+        android:fontFamily="minerva"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Requested By"
-        android:id="@+id/asset_requested_by_tv"/>
+        android:id="@+id/asset_requested_by_tv"
+        android:textSize="20dp"
+        android:fontFamily="minerva"/>
 
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Department"
-        android:id="@+id/department_name_tv"/>
+        android:id="@+id/department_name_tv"
+        android:textSize="20dp"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Duration"
-        android:id="@+id/duration_tv"/>
+        android:id="@+id/duration_tv"
+        android:textSize="20dp"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Approve"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Decline"/>
+            android:text="Approve"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:background="@drawable/button_style"
+            android:textColor="#ffffff"
+            android:layout_margin="15dp"/>
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Decline"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:background="@drawable/button_style"
+            android:textColor="#ffffff"
+            android:layout_margin="15dp"/>
 
 
 
