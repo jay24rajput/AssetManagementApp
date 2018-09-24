@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -66,18 +67,32 @@ public class NavDrawer extends AppCompatActivity
         }
 
 
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences prefs = getSharedPreferences("MyPrefs",MODE_PRIVATE);
             String name = prefs.getString("Name", "");
             String email=prefs.getString("Email","");
             String imgUrl=prefs.getString("Photo URL","");
 
             Log.e("Jay",name+" "+email+" "+imgUrl);
 
-        NavigationView navigationView1 = (NavigationView) findViewById(R.id.nav_view);
-        View hView =  navigationView1.getHeaderView(0);
+        View hView =  navigationView.inflateHeaderView(R.layout.nav_header_nav_drawer);
         TextView nvName = (TextView)hView.findViewById(R.id.nav_drawer_name);
-        Log.e("Jay","I am here");
         nvName.setText(name);
+
+        TextView nvEmail=(TextView)hView.findViewById(R.id.nav_drawer_email);
+        nvEmail.setText(name);
+
+        StrictMode.ThreadPolicy policy = new
+                StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+        ImageView nvImg=(ImageView)hView.findViewById(R.id.nav_drawer_imageView);
+        try {
+            URL url = new URL(imgUrl);
+            Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+            nvImg.setImageBitmap(bmp);
+        } catch (java.io.IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
