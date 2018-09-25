@@ -32,6 +32,9 @@ import java.net.URL;
 public class NavDrawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    NavigationView navigationView;
+    String mUid="23045";
+    String role;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +82,7 @@ public class NavDrawer extends AppCompatActivity
         nvName.setText(name);
 
         TextView nvEmail=(TextView)hView.findViewById(R.id.nav_drawer_email);
-        nvEmail.setText(name);
+        nvEmail.setText(email);
 
         StrictMode.ThreadPolicy policy = new
                 StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -93,6 +96,7 @@ public class NavDrawer extends AppCompatActivity
         } catch (java.io.IOException e) {
             e.printStackTrace();
         }
+        checkRole();
     }
 
     @Override
@@ -117,6 +121,8 @@ public class NavDrawer extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+
+
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -156,5 +162,66 @@ public class NavDrawer extends AppCompatActivity
     public void cardViewClicked(View view){
         Intent intent=new Intent(this,AssetOwned.class);
         startActivity(intent);
+    }
+
+    public void checkRole(){
+        int roleId=Character.getNumericValue(mUid.charAt(1));
+        switch (roleId){
+            case 1: role="Staff";
+            setStaffMenu();
+                    break;
+            case 2:role="Lab Assistant";
+            setStaffMenu();
+                    break;
+            case 3:role="Department Purchase Officer";
+            setDPO();
+                    break;
+            case 4:role="HOD";
+            setHOD();
+            break;
+            case 5:role="Purchasing Officer";
+            setPO();
+            break;
+            case 6:role="Admin";
+            break;
+
+        }
+    }
+
+    public void setStaffMenu(){
+        navigationView=(NavigationView) findViewById(R.id.nav_view);
+        Menu nav_Menu = navigationView.getMenu();
+        nav_Menu.findItem(R.id.generate_reports).setVisible(false);
+        nav_Menu.findItem(R.id.track_asset).setVisible(false);
+        nav_Menu.findItem(R.id.distribute_asset).setVisible(false);
+        nav_Menu.findItem(R.id.nav_role).setTitle(role);
+    }
+
+    public void setDPO(){
+        navigationView=(NavigationView) findViewById(R.id.nav_view);
+        Menu nav_Menu = navigationView.getMenu();
+        nav_Menu.findItem(R.id.request_asset_maintainance).setVisible(false);
+        nav_Menu.findItem(R.id.request_asset).setVisible(false);
+        nav_Menu.findItem(R.id.nav_role).setTitle(role);
+    }
+
+    public void setHOD(){
+        navigationView=(NavigationView) findViewById(R.id.nav_view);
+        Menu nav_Menu = navigationView.getMenu();
+        nav_Menu.findItem(R.id.request_asset_maintainance).setVisible(false);
+        nav_Menu.findItem(R.id.request_asset).setVisible(false);
+        nav_Menu.findItem(R.id.track_asset).setVisible(false);
+        nav_Menu.findItem(R.id.distribute_asset).setVisible(false);
+        nav_Menu.findItem(R.id.nav_role).setTitle(role);
+    }
+
+    public void setPO(){
+        navigationView=(NavigationView) findViewById(R.id.nav_view);
+        Menu nav_Menu = navigationView.getMenu();
+        nav_Menu.findItem(R.id.request_asset_maintainance).setVisible(false);
+        nav_Menu.findItem(R.id.request_asset).setVisible(false);
+        nav_Menu.findItem(R.id.track_asset).setVisible(false);
+        nav_Menu.findItem(R.id.generate_reports).setVisible(false);
+        nav_Menu.findItem(R.id.nav_role).setTitle(role);
     }
 }

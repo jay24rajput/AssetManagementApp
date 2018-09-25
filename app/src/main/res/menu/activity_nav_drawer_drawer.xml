@@ -6,7 +6,7 @@
     <item android:title="Role">
         <menu>
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/nav_role"
                 android:title="Staff" />
         </menu>
     </item>
@@ -25,6 +25,19 @@
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
             android:title="Tools" />-->
+        <item
+            android:id="@+id/generate_reports"
+            android:title="Generate Reports"/>
+
+        <item
+            android:id="@+id/track_asset"
+            android:title="Track Asset"/>
+
+        <item
+            android:id="@+id/distribute_asset"
+            android:title="Distribute Asset"/>
+
+
     </group>
 
    <!-- <item android:title="Communicate">
