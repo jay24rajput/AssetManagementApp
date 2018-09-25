@@ -172,6 +172,16 @@ public class NavDrawer extends AppCompatActivity
         }
         
 
+        else if(id==R.id.generate_reports){
+            Intent generateReports=new Intent(this,GenerateReports.class);
+            startActivity(generateReports);
+        }
+
+        else if(id==R.id.distribute_asset){
+            Intent distributeAsset=new Intent(this,activity_distribute.class);
+            startActivity(distributeAsset);
+        }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

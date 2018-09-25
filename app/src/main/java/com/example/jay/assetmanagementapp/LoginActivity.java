@@ -152,7 +152,8 @@ public class LoginActivity extends AppCompatActivity {
 
     public void getAuthentication(){
 
-        String url = "http://192.168.43.151/ves_hacks/public/api/userlist";
+        String url = "http://192.168.43.151/ves_hacks/public/api/userDetail";
+        final String url2="http://192.168.43.151/ves_hacks/public/api/postUser";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
 
@@ -163,6 +164,7 @@ public class LoginActivity extends AppCompatActivity {
                         try {
                             JSONArray jsonArray = new JSONArray(response);
 
+                            Log.e("userdata",jsonArray.toString());
 
                             for(int i=0;i<jsonArray.length();i++){
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -181,9 +183,61 @@ public class LoginActivity extends AppCompatActivity {
 
 
                                 // Checks if the user is unapproved
+                                /*if(jsonArray.length()==0)
+                                {
+                                    StringRequest stringRequest2 = new StringRequest(Request.Method.POST, url2,
+                                            new Response.Listener<String>() {
+
+
+                                                @Override
+                                                public void onResponse(String response) {
+
+
+
+                                                                Intent intent=new Intent(getApplicationContext(),NavDrawer.class);
+                                                                startActivity(intent);
+                                                                Toast.makeText(LoginActivity.this,"Your account has been approved!",Toast.LENGTH_LONG).show();
+
+
+
+
+                                                }
+
+
+                                            },
+                                            new Response.ErrorListener() {
+                                                @Override
+                                                public void onErrorResponse(VolleyError error) {
+                                                    Log.e("hello", "onErrorResponse:  ERROR");
+                                                    error.printStackTrace();
+                                                }
+                                            })
+                                    {
+                                        @Override
+                                        protected Map<String, String> getParams() throws AuthFailureError {
+                                            Map<String, String> params = new HashMap<>();
+                                            params.put("email",email);
+                                            params.put("name",name);
+                                            return params;
+                                        }
+
+                                    };
+
+                                    //Creates request queue
+                                    RequestQueue queue = VolleySingleton.getInstance(LoginActivity.this).
+                                            getRequestQueue();
+                                    stringRequest2.setRetryPolicy(new DefaultRetryPolicy(
+                                            MY_SOCKET_TIMEOUT_MS,
+                                            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                                            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+                                    //add request to queue
+                                    VolleySingleton.getInstance(LoginActivity.this).addToRequestQueue(stringRequest2);
+                                }*/
                                 if(jsonObject.getString("approved").equals("0")){
                                     Intent intent = new Intent(getApplicationContext(),Not_approved.class);
                                     startActivity(intent);
+
                                 }
 
                                 else{
@@ -231,7 +285,6 @@ public class LoginActivity extends AppCompatActivity {
 
         //add request to queue
         VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
-
     }
 
 
