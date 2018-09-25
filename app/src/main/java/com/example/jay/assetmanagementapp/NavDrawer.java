@@ -1,5 +1,4 @@
 package com.example.jay.assetmanagementapp;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.CardView;
@@ -26,21 +26,36 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 
 public class NavDrawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+
+    private static String mUid;
     NavigationView navigationView;
-    String mUid="23045";
     String role;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav_drawer);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
+
+
+
+
+
+
+        SharedPreferences prefs = getSharedPreferences("MyPrefs",MODE_PRIVATE);
+         mUid = prefs.getString("UID","");
+
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +86,7 @@ public class NavDrawer extends AppCompatActivity
         }
 
 
-            SharedPreferences prefs = getSharedPreferences("MyPrefs",MODE_PRIVATE);
+             prefs = getSharedPreferences("MyPrefs",MODE_PRIVATE);
             String name = prefs.getString("Name", "");
             String email=prefs.getString("Email","");
             String imgUrl=prefs.getString("Photo URL","");
@@ -155,6 +170,7 @@ public class NavDrawer extends AppCompatActivity
             Intent requestAsset = new Intent(this, RequestAsset.class);
             startActivity(requestAsset);
         }
+        
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -229,5 +245,5 @@ public class NavDrawer extends AppCompatActivity
     }
 
 
-    
+
 }

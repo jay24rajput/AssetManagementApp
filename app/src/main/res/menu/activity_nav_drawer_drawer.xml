@@ -11,6 +11,9 @@
         </menu>
     </item>
 
+
+
+
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/purchase_asset"
@@ -39,6 +42,16 @@
 
 
     </group>
+
+
+    <item android:title="">
+        <menu>
+            <item
+                android:id="@+id/nav_log_out"
+                android:title="Sign Out"
+                />
+        </menu>
+    </item>
 
    <!-- <item android:title="Communicate">
         <menu>

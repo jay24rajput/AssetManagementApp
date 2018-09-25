@@ -10,7 +10,7 @@
     card_view:cardCornerRadius="3dp"
     android:id="@+id/cardview_cardview_layout"
     android:onClick="cardViewClicked"
-    card_view:cardBackgroundColor="#00FFFF">
+    card_view:cardBackgroundColor="#F2F66A">
 
     <LinearLayout
         android:layout_width="match_parent"
