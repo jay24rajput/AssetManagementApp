@@ -1,4 +1,5 @@
 package com.example.jay.assetmanagementapp;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,6 +20,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.jay.assetmanagementapp.Extra.VolleySingleton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -164,7 +166,26 @@ public class LoginActivity extends AppCompatActivity{
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
 
-                                Log.e("hello",jsonObject.toString());
+
+                                String UID = jsonObject.getString("uid");
+
+
+                                sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+
+                                //storing UID in shared preferences
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString("UID",UID);
+                                editor.commit();
+
+
+
+
+
+
+
+
+
+
                                 // Checks if the user is unapproved
                                 /*if(jsonArray.length()==0)
                                 {
