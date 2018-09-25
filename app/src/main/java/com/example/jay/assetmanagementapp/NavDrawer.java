@@ -88,6 +88,8 @@ public class NavDrawer extends AppCompatActivity
         ImageView nvImg=(ImageView)hView.findViewById(R.id.nav_drawer_imageView);
         try {
             URL url = new URL(imgUrl);
+
+            Log.e("hello",url.toString());
             Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
             nvImg.setImageBitmap(bmp);
         } catch (java.io.IOException e) {

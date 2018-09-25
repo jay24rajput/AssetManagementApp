@@ -12,6 +12,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -26,11 +33,17 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class LoginActivity extends AppCompatActivity{
 
+    private static final int MY_SOCKET_TIMEOUT_MS = 10000 ;
     int RC_SIGN_IN=200;
     private GoogleSignInClient mGoogleSignInClient;
     SignInButton SignInButton;
@@ -39,6 +52,7 @@ public class LoginActivity extends AppCompatActivity{
     public static String email;
     public static Uri photo_url;
     SharedPreferences sharedPreferences;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -111,8 +125,11 @@ public class LoginActivity extends AppCompatActivity{
 
 
             Log.e("details",name+"\n"+email+"\n"+photo_url);
-            Intent intent=new Intent(this,NavDrawer.class);
-            startActivity(intent);
+
+
+            getAuthentication();
+           // Intent intent=new Intent(this,NavDrawer.class);
+            //startActivity(intent);
 
 
             // Signed in successfully, show authenticated UI.
@@ -123,6 +140,81 @@ public class LoginActivity extends AppCompatActivity{
             Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
             //updateUI(null);
         }
+    }
+
+
+
+    public void getAuthentication(){
+
+        String url = "http://192.168.43.151/ves_hacks/public/api/userlist";
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+
+
+                    @Override
+                    public void onResponse(String response) {
+
+                        try {
+                            JSONArray jsonArray = new JSONArray(response);
+
+
+                            for(int i=0;i<jsonArray.length();i++){
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+
+                                Log.e("hello",jsonObject.toString());
+                                // Checks if the user is unapproved
+                                if(jsonObject.getString("approved").equals("0")){
+                                    Intent intent = new Intent(getApplicationContext(),Not_approved.class);
+                                    startActivity(intent);
+                                }
+
+                                else{
+                                    Intent intent=new Intent(getApplicationContext(),NavDrawer.class);
+                                    startActivity(intent);
+                                    Toast.makeText(LoginActivity.this,"Your account has been approved!",Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        }
+
+                        catch (JSONException e) {
+
+                            Log.e("hello","error1");
+                            e.printStackTrace();
+                        }
+                    }
+
+
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("hello", "onErrorResponse:  ERROR");
+                        error.printStackTrace();
+                    }
+                })
+        {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("email",email);
+                params.put("name",name);
+                return params;
+            }
+
+        };
+
+        //Creates request queue
+        RequestQueue queue = VolleySingleton.getInstance(this.getApplicationContext()).
+                getRequestQueue();
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                MY_SOCKET_TIMEOUT_MS,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        //add request to queue
+        VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
+
     }
 }
 
