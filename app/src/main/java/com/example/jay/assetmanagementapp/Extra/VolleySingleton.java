@@ -1,4 +1,4 @@
-package com.example.jay.assetmanagementapp;
+package com.example.jay.assetmanagementapp.Extra;
 
 import android.content.Context;
 import android.graphics.Bitmap;

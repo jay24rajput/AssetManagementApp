@@ -67,6 +67,7 @@ public class NavDrawer extends AppCompatActivity
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             final View rowView = inflater.inflate(R.layout.cardview_layout, null);
             cardViewLinearLayout.addView(rowView, cardViewLinearLayout.getChildCount() - 1);
+
         }
 
 
@@ -226,4 +227,7 @@ public class NavDrawer extends AppCompatActivity
         nav_Menu.findItem(R.id.generate_reports).setVisible(false);
         nav_Menu.findItem(R.id.nav_role).setTitle(role);
     }
+
+
+    
 }
